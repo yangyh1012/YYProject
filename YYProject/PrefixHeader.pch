@@ -1,0 +1,111 @@
+//
+//  PrefixHeader.pch
+//  YYProject
+//
+//  Created by 杨毅辉 on 2017/2/18.
+//  Copyright © 2017年 杨毅辉. All rights reserved.
+//
+
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#ifdef __OBJC__
+
+
+//*************************************** third ***************************************//
+
+//网络请求专用库
+#import "AFNetworking.h"
+
+//上下拉刷新
+#import "MJRefresh.h"
+
+//界面信息提示
+#import "MBProgressHUD.h"
+
+//界面信息加载
+#import "SVProgressHUD.h"
+
+//模式和字典相互转换
+#import "MJExtension.h"
+
+//图片加载
+#import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
+
+//gif图片加载
+#import "FLAnimatedImageView.h"
+
+//文件加密
+#import "RNEncryptor.h"
+#import "RNDecryptor.h"
+
+//应用评分
+#import "iRate.h"
+
+//实时监测当前的网络状态
+#import "Reachability.h"
+
+//*************************************** tools ***************************************//
+
+//字符串相关操作
+#import "NSString+YYString.h"
+
+//base64
+#import "NSData+YYData.h"
+
+//图片相关操作
+#import "UIImage+YYImage.h"
+
+//视图相关操作
+#import "UIView+YYView.h"
+
+
+//*************************************** net ***************************************//
+
+//请求网址存放位置
+#import "YYAPI.h"
+
+//主域名及接收类型设置
+#import "YYNetManage.h"
+
+//应用请求相关
+#import "YYCommunication.h"
+
+
+//*************************************** db ***************************************//
+
+//全局静态数据的定义
+#import "YYConstants.h"
+
+//数据库的存储
+#import "YYDataHandle.h"
+
+
+
+#endif
+
+
+//*************************************** DLog ***************************************//
+
+#ifdef DEBUG
+#ifndef DLog
+#   define DLog(fmt, ...) {NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);}
+#endif
+#ifndef ELog
+#   define ELog(err) {if(err) DLog(@"%@", err)}
+#endif
+#else
+#ifndef DLog
+#   define DLog(...)
+#endif
+#ifndef ELog
+#   define ELog(err)
+#endif
+#endif
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* PrefixHeader_pch */
