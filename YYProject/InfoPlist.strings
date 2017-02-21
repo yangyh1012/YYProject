@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  YYProject
+
+  Created by yangyihui on 2017/2/21.
+  Copyright © 2017年 杨毅辉. All rights reserved.
+*/
+
+CFBundleDisplayName = "YYProject";

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A039C8441E5BF0D1002C42A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A039C8431E5BF0D1002C42A1 /* InfoPlist.strings */; };
 		D70C35A21E580EDF00F836C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C35A11E580EDF00F836C0 /* main.m */; };
 		D70C35A51E580EDF00F836C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C35A41E580EDF00F836C0 /* AppDelegate.m */; };
 		D70C35A81E580EDF00F836C0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C35A71E580EDF00F836C0 /* ViewController.m */; };
@@ -122,6 +123,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A039C8431E5BF0D1002C42A1 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		D70C359D1E580EDF00F836C0 /* YYProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YYProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D70C35A11E580EDF00F836C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D70C35A31E580EDF00F836C0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 			children = (
 				D70C35A11E580EDF00F836C0 /* main.m */,
 				D70C35DD1E58121D00F836C0 /* PrefixHeader.pch */,
+				A039C8431E5BF0D1002C42A1 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -908,6 +911,7 @@
 				D70C35AD1E580EE000F836C0 /* Assets.xcassets in Resources */,
 				D70C362F1E58136200F836C0 /* MJRefresh.bundle in Resources */,
 				D70C35AB1E580EE000F836C0 /* Main.storyboard in Resources */,
+				A039C8441E5BF0D1002C42A1 /* InfoPlist.strings in Resources */,
 				D70C36B81E5816EA00F836C0 /* iRate.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1253,6 +1257,7 @@
 				D70C35CC1E580EE100F836C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D70C35CD1E580EE100F836C0 /* Build configuration list for PBXNativeTarget "YYProjectTests" */ = {
 			isa = XCConfigurationList;
@@ -1261,6 +1266,7 @@
 				D70C35CF1E580EE100F836C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D70C35D01E580EE100F836C0 /* Build configuration list for PBXNativeTarget "YYProjectUITests" */ = {
 			isa = XCConfigurationList;
@@ -1269,6 +1275,7 @@
 				D70C35D21E580EE100F836C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
