@@ -225,7 +225,7 @@ static YYCommunication *sharedManager = nil;
 
 - (void)cancleAllRequest {
     
-    for (NSURLSessionDataTask *dataTask in self.requestDic) {
+    for (NSURLSessionDataTask *dataTask in [self.requestDic allValues]) {
         
         [dataTask cancel];
         [self.requestDic removeAllObjects];
