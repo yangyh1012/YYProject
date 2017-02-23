@@ -197,10 +197,14 @@ static YYCommunication *sharedManager = nil;
     if (error.userInfo[@"com.alamofire.serialization.response.error.data"]) {
         
         DLog(@"response.error: %@",[[NSString alloc] initWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] encoding:NSUTF8StringEncoding]);
+    } else if (error.userInfo[@"NSUnderlyingError"]) {
+        
+        NSError *subError = error.userInfo[@"NSUnderlyingError"];
+        DLog(@"response.error: %@",[[NSString alloc] initWithData:subError.userInfo[@"com.alamofire.serialization.response.error.data"] encoding:NSUTF8StringEncoding]);
     }
     
-    DLog(@"请求成功，请求的地址为：%@",URLString);
-    DLog(@"请求成功，参数列表为：%@",parameters);
+    DLog(@"请求失败，请求的地址为：%@",URLString);
+    DLog(@"请求失败，参数列表为：%@",parameters);
     DLog(@"请求结束：：：");
     
     [self.delegate requestFailure:error URLString:URLString parameters:parameters otherParams:otherParams];
