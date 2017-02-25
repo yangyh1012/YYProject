@@ -17,6 +17,25 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    /*说明：资源文件目录     */
+    NSBundle *bundle = [NSBundle mainBundle];
+    DLog(@"%@",bundle);//DLog
+    
+    /*说明：documents文件目录      */
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    DLog(@"%@",paths);//DLog
+    
+    
+    
+    /***** App store 应用打分 */
+    [iRate sharedInstance].applicationBundleID = [[[NSBundle mainBundle] infoDictionary] objectForKey:(__bridge NSString *)kCFBundleIdentifierKey];
+    [iRate sharedInstance].promptAtLaunch = NO;
+    [iRate sharedInstance].onlyPromptIfLatestVersion = NO;
+    /* ***** */
+    
+    
+    
     return YES;
 }
 
