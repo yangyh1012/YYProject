@@ -32,19 +32,10 @@ NSString *const YYProjectHUDFunctionDevelopingText = @"功能即将上线，敬�
 
 NSString *const YYNotificationLoginFirst = @"YYTestNotification_YYNotificationLoginFirst";
 
-
 NSString *const YYNotificationPageLoad = @"YYTestNotification_YYNotificationPageLoad";
-
 NSInteger const YYProjectStartPage = 1;
 
-
-NSString *const YYTestNotification = @"YYTestNotification_YYProject";
-
-
 NSString *const YYNotificationKey = @"YYNotification_YYNotificationKey";
-
-NSString *const YYLocationNotification = @"YYLocationNotification";
-
 
 #pragma mark - YYConstants
 

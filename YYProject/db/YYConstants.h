@@ -54,18 +54,10 @@ extern NSString *const YYProjectHUDFunctionDevelopingText;
 
 extern NSString *const YYNotificationLoginFirst;
 
-
 extern NSString *const YYNotificationPageLoad;
-
 extern NSInteger const YYProjectStartPage;
 
-
-extern NSString *const YYTestNotification;
-
-
 extern NSString *const YYNotificationKey;
-
-extern NSString *const YYLocationNotification;
 
 #pragma mark - YYConstants
 

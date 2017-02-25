@@ -108,7 +108,7 @@
             
             [[NSNotificationCenter defaultCenter] addObserver:self
                                                      selector:@selector(keyboardWillShow:)
-                                                         name:YYTestNotification object:nil];
+                                                         name:@"test" object:nil];
         }
     }
 }
@@ -122,7 +122,7 @@
         if (flag) {
             
             [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                            name:YYTestNotification object:nil];
+                                                            name:@"test" object:nil];
         }
     }
 }

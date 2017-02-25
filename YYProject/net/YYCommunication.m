@@ -229,6 +229,7 @@ static YYCommunication *sharedManager = nil;
 
 - (void)cancleAllRequest {
     
+    DLog(@"取消当前所有网络请求");
     for (NSURLSessionDataTask *dataTask in [self.requestDic allValues]) {
         
         [dataTask cancel];
