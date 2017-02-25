@@ -291,7 +291,7 @@
         
     } else if ([notificationName isEqualToString:YYProjectBaseUrl]) {
         
-        [self showHUDWithText:[otherParams objectForKey:@"RespDesc"]];
+        [self showHUDWithText:[otherParams objectForKey:YYYProjectRespDesc]];
         [self performSelector:@selector(bactToPreController:) withObject:nil afterDelay:YYProjectHUDTipTime];
     }
 }

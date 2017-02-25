@@ -11,6 +11,21 @@
 @interface NSString (YYString)
 
 /**
+ 判断iPhone型号
+ 
+ @return iPhone型号
+ */
++ (NSString *)iPhoneModel;
+
+
+/**
+ 判断平台
+ 
+ @return 平台
+ */
++ (NSString *)platform;
+
+/**
  *  去除头尾空格
  *
  *  @param string  需要处理的字符串

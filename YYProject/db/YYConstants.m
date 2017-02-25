@@ -16,6 +16,8 @@ NSString *const YYProjectStatusFailed = @"0";
 NSString *const YYProjectStatusSuccess = @"1";
 NSString *const YYProjectStatusLoginFirst = @"2";
 
+NSString *const YYYProjectRespDesc = @"RespDesc";
+
 #pragma mark - 界面定义
 
 CGFloat const YYProjectHUDLoadTextFont = 20.0f;
@@ -42,6 +44,7 @@ NSString *const YYTestNotification = @"YYTestNotification_YYProject";
 NSString *const YYNotificationKey = @"YYNotification_YYNotificationKey";
 
 NSString *const YYLocationNotification = @"YYLocationNotification";
+
 
 #pragma mark - YYConstants
 

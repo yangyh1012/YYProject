@@ -243,7 +243,7 @@
 - (void)requestSuccess:(nullable id)responseObject URLString:(nullable NSString *)URLString parameters:(nullable NSDictionary *)parameters otherParams:(nullable NSDictionary *)otherParams {
     
     NSString *respCode = @"RespCode";
-    NSString *respDesc = @"RespDesc";
+    NSString *respDesc = YYYProjectRespDesc;
     NSString *results = @"Results";
     
     NSNumber *responseStatus = (NSNumber *)[responseObject objectForKey:respCode];
@@ -308,7 +308,7 @@
 //请求失败或者是重新登录
 - (void)requestLoginFirstOrFailedStatus:(NSString *)statusStr otherParams:(id)otherParams {
     
-    NSString *responseTip = [otherParams objectForKey:@"RespDesc"];
+    NSString *responseTip = [otherParams objectForKey:YYYProjectRespDesc];
     [self showHUDWithText:responseTip mode:MBProgressHUDModeText yOffset:[self HUDOffsetY] font:YYProjectHUDTipTextFont];
     
     //重新登录

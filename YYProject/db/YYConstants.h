@@ -33,9 +33,12 @@
 #pragma mark - 数据名称定义
 
 extern NSString *const YYProjectSid;
+
 extern NSString *const YYProjectStatusFailed;
 extern NSString *const YYProjectStatusSuccess;
 extern NSString *const YYProjectStatusLoginFirst;
+
+extern NSString *const YYYProjectRespDesc;
 
 #pragma mark - 界面定义
 
