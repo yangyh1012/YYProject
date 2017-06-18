@@ -449,11 +449,22 @@
         
         if (!self.HUD) {
             
-            self.HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+            if (self.navigationController.view) {
+                
+                self.HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+            } else {
+                
+                self.HUD = [[MBProgressHUD alloc] initWithView:self.view];
+            }
+            
             [self.view addSubview:self.HUD];
             self.HUD.delegate = self;
-            self.HUD.contentColor = [[YYConstants sharedManager] YYProjectDefaultColor];
-            self.HUD.bezelView.color = [UIColor whiteColor];
+            self.HUD.margin = 10.0f;
+//            self.HUD.contentColor = [[YYConstants sharedManager] YYProjectDefaultColor];
+//            self.HUD.bezelView.color = [UIColor whiteColor];
+            
+            self.HUD.contentColor = [UIColor whiteColor];
+            self.HUD.bezelView.color = [UIColor blackColor];
         }
         
         self.HUD.label.font = [UIFont systemFontOfSize:fontSize];
