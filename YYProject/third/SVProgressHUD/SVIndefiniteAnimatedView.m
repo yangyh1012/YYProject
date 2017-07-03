@@ -124,7 +124,7 @@
     _strokeColor = strokeColor;
     
     //加载条的颜色
-    _indefiniteAnimatedLayer.strokeColor = [UIColor colorWithRed:0 green:121/255.0 blue:250/255.0 alpha:1.0].CGColor;
+    _indefiniteAnimatedLayer.strokeColor = [UIColor colorWithRed:0 green:0/255.0 blue:0/255.0 alpha:1.0].CGColor;
 }
 
 - (void)setStrokeThickness:(CGFloat)strokeThickness {

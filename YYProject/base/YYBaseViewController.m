@@ -475,6 +475,7 @@
     } else {
         
         [SVProgressHUD show];
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     }
 }
 
