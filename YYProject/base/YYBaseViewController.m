@@ -52,6 +52,8 @@
     self.communication = [[YYCommunication alloc] init];
     self.communication.delegate = self;//网络请求代理
     
+    [self addNavItemForBack];
+    
     {
         BOOL flag = NO;
         
@@ -91,6 +93,21 @@
             [self.view layoutIfNeeded];
         }
     }
+}
+
+- (void)addNavItemForBack {
+    
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [leftButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(leftNavigationItemHandle:) forControlEvents:UIControlEventTouchUpInside];
+    leftButton.frame = CGRectMake(0, 0, 18, 32);
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = backItem;
+}
+
+- (void)leftNavigationItemHandle:(id)sender {
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
