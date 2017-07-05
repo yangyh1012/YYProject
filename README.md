@@ -1,6 +1,5 @@
 # YYProject 基础工程
 简介：这是一个基础工程，你可以直接下载使用。
-（注：请使用Xcode 8运行）
 
 # 谁使用它
 任何iOS开发人员（工程语言是Objective-C）都可以使用它。
@@ -16,6 +15,7 @@
 * RNCryptor：文件加密
 * iRate：应用评分
 * Reachability：实时监测当前的网络状态
+* Masonry：代码层面的界面布局
 
 # 怎么使用 
 ### db：
