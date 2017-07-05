@@ -30,6 +30,9 @@
 #define RGB_Color(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
 #define RGB_ColorA(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
+//__weak __typeof(self)wself = self;
+//__strong __typeof(self)self = wself;
+
 #pragma mark - 数据名称定义
 
 extern NSString *const YYProjectSid;
