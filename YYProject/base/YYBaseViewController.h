@@ -35,6 +35,8 @@ typedef NS_ENUM(NSInteger, YYBaseViewControllerTestType) {
 
 
 
+
+
 /**
  *  下拉刷新调用此方法，此方法调用requestPageDataWithType方法
  */
@@ -76,6 +78,7 @@ typedef NS_ENUM(NSInteger, YYBaseViewControllerTestType) {
 
 
 
+
 /**
  *  显示加载条
  */
@@ -83,7 +86,7 @@ typedef NS_ENUM(NSInteger, YYBaseViewControllerTestType) {
 
 
 /**
- 隐藏加载条
+ *  隐藏加载条
  */
 - (void)hideIndeterminateHUD;
 
@@ -137,15 +140,10 @@ typedef NS_ENUM(NSInteger, YYBaseViewControllerTestType) {
 
 
 
-/**
- 计算边框
 
- @return 长度
- */
-- (CGFloat)multiplesForPhone;
 
 /**
- *  根据子视图得到某个特定类型的父视图View
+ *  根据子视图得到某个特定类型的父视图View，主要是用于取出tableViewCell的子视图
  *
  *  @param aClass 特定类型
  *  @param sender 子视图
@@ -157,31 +155,10 @@ typedef NS_ENUM(NSInteger, YYBaseViewControllerTestType) {
 
 
 
-/**
- *  按钮设置网络背景图(默认 UIViewContentModeScaleAspectFit)
- *
- *  @param button 按钮
- *  @param urlStr 网址字符串
- */
-- (void)btnSettingBackgroundImageViewForBtn:(UIButton *)button urlStr:(NSString *)urlStr;
-
-- (void)btnSettingBackgroundImageViewForBtn:(UIButton *)button urlStr:(NSString *)urlStr contentModeFlag:(BOOL)flag;
 
 
 
-/**
- *  富文本
- *
- *  @param allStr   需要处理的整个字符串
- *  @param rangeStr 需要处理的部分字符串
- *  @param flag     是否需要下划线
- *
- *  @return 处理后的富文本
- */
-- (NSMutableAttributedString *)attributedStringSetting:(NSString *)allStr rangeStr:(NSString *)rangeStr underLineFlag:(BOOL)flag;
 
-- (NSMutableAttributedString *)attributedStringSetting:(NSString *)allStr rangeStr:(NSString *)rangeStr textColor:(UIColor *)color fontSize:(UIFont *)font;
 
-- (NSMutableAttributedString *)attributedStringSetting:(NSString *)allStr rangeStr:(NSString *)rangeStr textColor:(UIColor *)color fontSize:(UIFont *)font underLineFlag:(BOOL)flag;
 
 @end

@@ -27,6 +27,8 @@
 
 @implementation YYBaseViewController
 
+#pragma mark - Life cycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -73,8 +75,36 @@
             [self requestDataUrlStr:YYProjectBaseUrl];
         }
         
-        //添加通知
         if (flag) {
+            
+            //可以使界面的View的frame有值
+            [self.view setNeedsLayout];
+            [self.view layoutIfNeeded];
+        }
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+    
+    {
+        BOOL flag = NO;
+        if (flag) {
+            
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(keyboardWillShow:)
+                                                         name:@"test" object:nil];
             
             //注册键盘出现通知
             [[NSNotificationCenter defaultCenter] addObserver:self
@@ -85,54 +115,12 @@
                                                      selector:@selector(keyboardWillHide:)
                                                          name:UIKeyboardWillHideNotification object:nil];
         }
-        
-        if (flag) {
-            
-            //可以使界面的View的frame有值
-            [self.view setNeedsLayout];
-            [self.view layoutIfNeeded];
-        }
     }
 }
 
-- (void)addNavItemForBack {
+- (void)viewDidDisappear:(BOOL)animated {
     
-    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [leftButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [leftButton addTarget:self action:@selector(leftNavigationItemHandle:) forControlEvents:UIControlEventTouchUpInside];
-    leftButton.frame = CGRectMake(0, 0, 18, 32);
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
-    self.navigationItem.leftBarButtonItem = backItem;
-}
-
-- (void)leftNavigationItemHandle:(id)sender {
-    
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    
-    [super viewWillAppear:animated];
-    
-    {
-        BOOL flag = NO;
-        if (flag) {
-            
-            [[NSNotificationCenter defaultCenter] addObserver:self
-                                                     selector:@selector(keyboardWillShow:)
-                                                         name:@"test" object:nil];
-        }
-    }
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    
-    [super viewWillDisappear:animated];
+    [super viewDidDisappear:animated];
     
     {
         BOOL flag = NO;
@@ -140,14 +128,15 @@
             
             [[NSNotificationCenter defaultCenter] removeObserver:self
                                                             name:@"test" object:nil];
+            
+            //解除键盘出现通知
+            [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                            name:UIKeyboardWillShowNotification object:nil];
+            //解除键盘隐藏通知
+            [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                            name:UIKeyboardWillHideNotification object:nil];
         }
     }
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    
-    [super viewDidAppear:animated];
-    
 }
 
 - (void)dealloc {
@@ -158,23 +147,26 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];//去除通知
     [self hide:NO];//去除提示框
     
-    {
-        BOOL flag = NO;
-        if (flag) {
-            
-            //解除键盘出现通知
-            [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                            name:UIKeyboardWillShowNotification object:nil];
-            //解除键盘隐藏通知
-            [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                            name:UIKeyboardWillHideNotification object:nil];
-        }
-    }
-    
     DLog(@"====== %@ dealloc ======",NSStringFromClass(self.class));//打印当前控制器名称
 }
 
+- (void)didReceiveMemoryWarning {
+    
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 #pragma mark - View Init
+
+- (void)addNavItemForBack {
+    
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [leftButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(leftNavigationItemHandle:) forControlEvents:UIControlEventTouchUpInside];
+    leftButton.frame = CGRectMake(0, 0, 18, 32);
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = backItem;
+}
 
 - (void)navigationSetting {
     
@@ -214,6 +206,145 @@
     self.navigationController.navigationBar.translucent = NO;
 }
 
+#pragma mark - Button
+
+- (void)leftNavigationItemHandle:(id)sender {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - Action
+
+/**
+ *  下拉加载数据
+ */
+- (void)loadListDataForStart {
+    
+    self.pageNum = YYProjectStartPage;
+    
+    [self requestPageDataWithType:0];
+}
+
+/**
+ *  上拉加载数据
+ */
+- (void)loadListDataForMore {
+    
+    self.pageNum = self.pageNum + 1;
+    if ([self.datas count] <= 0) {
+        
+        self.pageNum = 1;
+    }
+    
+    [self requestPageDataWithType:1];
+}
+
+/**
+ *  分页加载数据
+ */
+- (void)requestPageDataWithType:(NSInteger)type {
+    
+    NSString *URLString = @"";
+    NSDictionary *params = @{@"page":@(self.pageNum)};
+    NSDictionary *otherParams = @{@"tableView":self.tableView1,
+                                  YYNotificationPageLoad:@(type)};
+    
+    NSDictionary *parameters = @{@"URLString":URLString,
+                                 @"parameters":params,
+                                 @"otherParams":otherParams};
+    
+    [self requestDataParam:parameters loadFlag:NO];
+}
+
+/**
+ *  让上下拉刷新的加载条停止
+ */
+- (void)stopLoadingAndPageInitOtherParams:(id)otherParams {
+    
+    UITableView *tableView = [otherParams objectForKey:@"tableView"];
+    NSNumber *pageLoadNum = [otherParams objectForKey:YYNotificationPageLoad];
+    
+    if (pageLoadNum && tableView) {
+        
+        if ([pageLoadNum integerValue] == 0) {
+            
+            [tableView.mj_header endRefreshing];
+        } else {
+            
+            [tableView.mj_footer endRefreshing];
+        }
+        
+        if (self.pageNum > YYProjectStartPage) {
+            
+            self.pageNum = self.pageNum - 1;
+        }
+    }
+}
+
+//=====================================================
+//=====================================================
+
+
+
+
+- (void)showDataEmptyTip:(NSString *)tip positionY:(CGFloat)y {
+    
+    if (!self.dataEmptyTipLabel) {
+        
+        self.dataEmptyTipLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+        self.dataEmptyTipLabel.text = tip;
+        [self.view addSubview:self.dataEmptyTipLabel];
+        [self.dataEmptyTipLabel sizeToFit];
+        self.dataEmptyTipLabel.frame = CGRectMake((self.view.frame.size.width - self.dataEmptyTipLabel.frame.size.width) / 2.0, (self.view.frame.size.height - self.dataEmptyTipLabel.frame.size.height) / 2.0 - y, self.dataEmptyTipLabel.frame.size.width, self.dataEmptyTipLabel.frame.size.height);
+    }
+    
+    [self.view bringSubviewToFront:self.dataEmptyTipLabel];
+    self.dataEmptyTipLabel.hidden = NO;
+}
+
+- (void)hideDataEmptyTip {
+    
+    self.dataEmptyTipLabel.hidden = YES;
+}
+
+
+
+
+
+
+
+
+- (id)isCorrectViewWithClass:(Class)aClass subView:(id)sender {
+    
+    id view = [sender superview];
+    if (view) {
+        
+        if ([view isKindOfClass:aClass]) {
+            
+            return view;
+        } else {
+            
+            return [self isCorrectViewWithClass:aClass subView:view];
+        }
+    } else {
+        
+        return nil;
+    }
+}
+
+
+
+/**
+ *  跳转到登录
+ */
+- (void)showLogin:(id)sender {
+    
+    [self hide:YES];
+    [[YYDataHandle sharedManager] setUserDefaultSecretStringValue:@"" WithKey:YYProjectSid];
+    UIViewController *loginViewController = [[self storyboard] instantiateViewControllerWithIdentifier:@"MDLoginViewController"];
+    [self.navigationController pushViewController:loginViewController animated:YES];
+}
+
 #pragma mark - Request
 
 //无任何参数请求
@@ -227,7 +358,7 @@
     
     if (loadFlag) {
         
-        [self showIndeterminateTip];
+        [self showIndeterminateHUD];
     }
     
     [self.communication httpRequest:urlStr];
@@ -244,16 +375,10 @@
     
     if (loadFlag) {
         
-        [self showIndeterminateTip];
+        [self showIndeterminateHUD];
     }
     
     [self.communication httpRequestWithAllPara:parameters];
-}
-
-//显示加载条
-- (void)showIndeterminateTip {
-    
-    [self showIndeterminateHUD];
 }
 
 //可以正常连接到服务端
@@ -355,86 +480,38 @@
     //子类实现这个方法
 }
 
-/**
- *  跳转到登录
- */
-- (void)showLogin:(id)sender {
+#pragma mark - Notification
+
+- (void)keyboardWillShow:(NSNotification *)notification {
     
-    [self hide:YES];
-    [[YYDataHandle sharedManager] setUserDefaultSecretStringValue:@"" WithKey:YYProjectSid];
-    UIViewController *loginViewController = [[self storyboard] instantiateViewControllerWithIdentifier:@"MDLoginViewController"];
-    [self.navigationController pushViewController:loginViewController animated:YES];
+    NSDictionary *info = [notification userInfo];
+    
+    /*说明：UIKeyboardFrameEndUserInfoKey获得键盘的尺寸，键盘高度
+     
+     */
+    NSValue *value = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGSize keyboardSize = [value CGRectValue].size;
+    
+    DLog(@"%.f",keyboardSize.height);
+    
+    //    self.tableViewBottomConstraint.constant = keyboardSize.height;
+    //    [self updateViewConstraints];
 }
 
-
-
-//=======================================================================================================
-
-
-/**
- *  下拉加载数据
- */
-- (void)loadListDataForStart {
+- (void)keyboardWillHide:(NSNotification *)notification {
     
-    self.pageNum = YYProjectStartPage;
+    NSDictionary *info = [notification userInfo];
     
-    [self requestPageDataWithType:0];
-}
-
-/**
- *  上拉加载数据
- */
-- (void)loadListDataForMore {
+    /*说明：UIKeyboardFrameEndUserInfoKey获得键盘的尺寸，键盘高度
+     
+     */
+    NSValue *value = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGSize keyboardSize = [value CGRectValue].size;
     
-    self.pageNum = self.pageNum + 1;
-    if ([self.datas count] <= 0) {
-        
-        self.pageNum = 1;
-    }
+    DLog(@"%.f",keyboardSize.height);
     
-    [self requestPageDataWithType:1];
-}
-
-/**
- *  分页加载数据
- */
-- (void)requestPageDataWithType:(NSInteger)type {
-    
-    NSString *URLString = @"";
-    NSDictionary *params = @{@"page":@(self.pageNum)};
-    NSDictionary *otherParams = @{@"tableView":self.tableView1,
-                                  YYNotificationPageLoad:@(type)};
-    
-    NSDictionary *parameters = @{@"URLString":URLString,
-                                 @"parameters":params,
-                                 @"otherParams":otherParams};
-    
-    [self requestDataParam:parameters loadFlag:NO];
-}
-
-/**
- *  让上下拉刷新的加载条停止
- */
-- (void)stopLoadingAndPageInitOtherParams:(id)otherParams {
-    
-    UITableView *tableView = [otherParams objectForKey:@"tableView"];
-    NSNumber *pageLoadNum = [otherParams objectForKey:YYNotificationPageLoad];
-    
-    if (pageLoadNum && tableView) {
-        
-        if ([pageLoadNum integerValue] == 0) {
-            
-            [tableView.mj_header endRefreshing];
-        } else {
-            
-            [tableView.mj_footer endRefreshing];
-        }
-        
-        if (self.pageNum > YYProjectStartPage) {
-            
-            self.pageNum = self.pageNum - 1;
-        }
-    }
+    //    self.tableViewBottomConstraint.constant = self.tableViewBottomConstraint.constant - keyboardSize.height;
+    //    [self updateViewConstraints];
 }
 
 #pragma mark - MBProgressHUDDelegate
@@ -477,8 +554,8 @@
             [self.view addSubview:self.HUD];
             self.HUD.delegate = self;
             self.HUD.margin = 10.0f;
-//            self.HUD.contentColor = [[YYConstants sharedManager] YYProjectDefaultColor];
-//            self.HUD.bezelView.color = [UIColor whiteColor];
+            //            self.HUD.contentColor = [[YYConstants sharedManager] YYProjectDefaultColor];
+            //            self.HUD.bezelView.color = [UIColor whiteColor];
             
             self.HUD.contentColor = [UIColor whiteColor];
             self.HUD.bezelView.color = [UIColor blackColor];
@@ -492,7 +569,6 @@
     } else {
         
         [SVProgressHUD show];
-        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     }
 }
 
@@ -521,183 +597,6 @@
 - (CGFloat)HUDOffsetY {
     
     return self.view.frame.size.height/2.0 - 100;
-}
-
-#pragma mark - Action
-
-- (void)btnSettingBackgroundImageViewForBtn:(UIButton *)button urlStr:(NSString *)urlStr {
-    
-    [self btnSettingBackgroundImageViewForBtn:button urlStr:urlStr contentModeFlag:YES];
-}
-
-- (void)btnSettingBackgroundImageViewForBtn:(UIButton *)button urlStr:(NSString *)urlStr contentModeFlag:(BOOL)flag {
-    
-    NSURL *url = [NSURL URLWithString:urlStr];
-    
-    //BUG FIX:要是button的背景图拉伸，不要设置sd_setImageWithURL，而是设置sd_setBackgroundImageWithURL
-    [button sd_setBackgroundImageWithURL:url forState:UIControlStateNormal placeholderImage:[[YYConstants sharedManager] YYProjectDefaultImage] options:SDWebImageRetryFailed];
-    
-    if (flag) {
-        
-        button.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    }
-}
-
-
-
-
-
-
-- (NSMutableAttributedString *)attributedStringSetting:(NSString *)allStr rangeStr:(NSString *)rangeStr underLineFlag:(BOOL)flag {
-    
-    return [self attributedStringSetting:allStr rangeStr:rangeStr textColor:nil fontSize:nil underLineFlag:flag];
-}
-
-- (NSMutableAttributedString *)attributedStringSetting:(NSString *)allStr rangeStr:(NSString *)rangeStr textColor:(UIColor *)color fontSize:(UIFont *)font {
-    
-    return [self attributedStringSetting:allStr rangeStr:rangeStr textColor:color fontSize:font underLineFlag:NO];
-}
-
-- (NSMutableAttributedString *)attributedStringSetting:(NSString *)allStr rangeStr:(NSString *)rangeStr textColor:(UIColor *)color fontSize:(UIFont *)font underLineFlag:(BOOL)flag {
-    
-    if ([NSString isStringEmpty:allStr]) {
-        
-        allStr = @"";
-    }
-    
-    if ([NSString isStringEmpty:rangeStr]) {
-        
-        rangeStr = @"";
-    }
-    
-    NSString *brandLabelStr = allStr;
-    NSMutableAttributedString *brandLabelText = [[NSMutableAttributedString alloc] initWithString:brandLabelStr];
-    NSRange brandLabelRange = [brandLabelStr rangeOfString:rangeStr];
-    
-    if (color) {
-        
-        [brandLabelText addAttribute:NSForegroundColorAttributeName value:color range:brandLabelRange];
-    }
-    
-    if (font) {
-        
-        [brandLabelText addAttribute:NSFontAttributeName value:font range:brandLabelRange];
-    }
-    
-    if (flag) {
-        
-        [brandLabelText addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:brandLabelRange];
-    }
-    
-    return brandLabelText;
-}
-
-
-
-
-
-
-
-- (void)showDataEmptyTip:(NSString *)tip positionY:(CGFloat)y {
-    
-    if (!self.dataEmptyTipLabel) {
-        
-        self.dataEmptyTipLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-        self.dataEmptyTipLabel.text = tip;
-        [self.view addSubview:self.dataEmptyTipLabel];
-        [self.dataEmptyTipLabel sizeToFit];
-        self.dataEmptyTipLabel.frame = CGRectMake((self.view.frame.size.width - self.dataEmptyTipLabel.frame.size.width) / 2.0, (self.view.frame.size.height - self.dataEmptyTipLabel.frame.size.height) / 2.0 - y, self.dataEmptyTipLabel.frame.size.width, self.dataEmptyTipLabel.frame.size.height);
-    }
-    
-    [self.view bringSubviewToFront:self.dataEmptyTipLabel];
-    self.dataEmptyTipLabel.hidden = NO;
-}
-
-- (void)hideDataEmptyTip {
-    
-    self.dataEmptyTipLabel.hidden = YES;
-}
-
-
-
-
-
-
-
-
-- (id)isCorrectViewWithClass:(Class)aClass subView:(id)sender {
-    
-    id view = [sender superview];
-    if (view) {
-        
-        if ([view isKindOfClass:aClass]) {
-            
-            return view;
-        } else {
-            
-            return [self isCorrectViewWithClass:aClass subView:view];
-        }
-    } else {
-        
-        return nil;
-    }
-}
-
-
-
-
-
-
-
-
-- (CGFloat)multiplesForPhone {
-    
-    if (IS_IPHONE_6) {
-        
-        return Scale_To_iPhone6;
-    } else if (IS_IPHONE_6P) {
-        
-        return Scale_To_iPhone6P;
-    } else {
-        
-        return 1.0f;
-    }
-}
-
-
-
-#pragma mark - Notification
-
-- (void)keyboardWillShow:(NSNotification *)notification {
-    
-    NSDictionary *info = [notification userInfo];
-    
-    /*说明：UIKeyboardFrameEndUserInfoKey获得键盘的尺寸，键盘高度
-     
-     */
-    NSValue *value = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
-    CGSize keyboardSize = [value CGRectValue].size;
-    
-    DLog(@"%.f",keyboardSize.height);
-    
-    //    self.tableViewBottomConstraint.constant = keyboardSize.height;
-    //    [self updateViewConstraints];
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification {
-    
-    NSDictionary *info = [notification userInfo];
-    
-    /*说明：UIKeyboardFrameEndUserInfoKey获得键盘的尺寸，键盘高度
-     
-     */
-    NSValue *value = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
-    CGSize keyboardSize = [value CGRectValue].size;
-    
-    DLog(@"%.f",keyboardSize.height);
-    
-    //    self.tableViewBottomConstraint.constant = self.tableViewBottomConstraint.constant - keyboardSize.height;
-    //    [self updateViewConstraints];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -744,8 +643,7 @@
     }
 }
 
-
-#pragma mark - Navigation
+#pragma mark - Segue
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

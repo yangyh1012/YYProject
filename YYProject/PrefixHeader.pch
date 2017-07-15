@@ -64,6 +64,11 @@
 //视图相关操作
 #import "UIView+YYView.h"
 
+#import "NSMutableAttributedString+YYMutableAttributedString.h"
+
+#import "UIButton+YYButton.h"
+
+#import "NSObject+YYObject.h"
 
 //*************************************** net ***************************************//
 

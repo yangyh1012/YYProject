@@ -18,6 +18,9 @@
 		A0110C4A1EFD19F000330C02 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A0110C3E1EFD19F000330C02 /* View+MASAdditions.m */; };
 		A0110C4B1EFD19F000330C02 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A0110C411EFD19F000330C02 /* ViewController+MASAdditions.m */; };
 		A039C8441E5BF0D1002C42A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A039C8431E5BF0D1002C42A1 /* InfoPlist.strings */; };
+		A0E0A9251F1A741B00662229 /* NSObject+YYObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E0A9241F1A741B00662229 /* NSObject+YYObject.m */; };
+		A0E0A9281F1A746C00662229 /* NSMutableAttributedString+YYMutableAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E0A9271F1A746C00662229 /* NSMutableAttributedString+YYMutableAttributedString.m */; };
+		A0E0A92B1F1A750800662229 /* UIButton+YYButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E0A92A1F1A750800662229 /* UIButton+YYButton.m */; };
 		D70C35A21E580EDF00F836C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C35A11E580EDF00F836C0 /* main.m */; };
 		D70C35A51E580EDF00F836C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C35A41E580EDF00F836C0 /* AppDelegate.m */; };
 		D70C35A81E580EDF00F836C0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D70C35A71E580EDF00F836C0 /* ViewController.m */; };
@@ -159,6 +162,12 @@
 		A0110C401EFD19F000330C02 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		A0110C411EFD19F000330C02 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
 		A039C8431E5BF0D1002C42A1 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		A0E0A9231F1A741B00662229 /* NSObject+YYObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+YYObject.h"; sourceTree = "<group>"; };
+		A0E0A9241F1A741B00662229 /* NSObject+YYObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YYObject.m"; sourceTree = "<group>"; };
+		A0E0A9261F1A746C00662229 /* NSMutableAttributedString+YYMutableAttributedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+YYMutableAttributedString.h"; sourceTree = "<group>"; };
+		A0E0A9271F1A746C00662229 /* NSMutableAttributedString+YYMutableAttributedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+YYMutableAttributedString.m"; sourceTree = "<group>"; };
+		A0E0A9291F1A750800662229 /* UIButton+YYButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+YYButton.h"; sourceTree = "<group>"; };
+		A0E0A92A1F1A750800662229 /* UIButton+YYButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+YYButton.m"; sourceTree = "<group>"; };
 		D70C359D1E580EDF00F836C0 /* YYProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YYProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D70C35A11E580EDF00F836C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D70C35A31E580EDF00F836C0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -410,6 +419,33 @@
 			path = Masonry;
 			sourceTree = "<group>";
 		};
+		A0E0A9201F1A73F800662229 /* YYButton */ = {
+			isa = PBXGroup;
+			children = (
+				A0E0A9291F1A750800662229 /* UIButton+YYButton.h */,
+				A0E0A92A1F1A750800662229 /* UIButton+YYButton.m */,
+			);
+			path = YYButton;
+			sourceTree = "<group>";
+		};
+		A0E0A9211F1A73F800662229 /* YYMutableAttributedString */ = {
+			isa = PBXGroup;
+			children = (
+				A0E0A9261F1A746C00662229 /* NSMutableAttributedString+YYMutableAttributedString.h */,
+				A0E0A9271F1A746C00662229 /* NSMutableAttributedString+YYMutableAttributedString.m */,
+			);
+			path = YYMutableAttributedString;
+			sourceTree = "<group>";
+		};
+		A0E0A9221F1A73F800662229 /* YYObject */ = {
+			isa = PBXGroup;
+			children = (
+				A0E0A9231F1A741B00662229 /* NSObject+YYObject.h */,
+				A0E0A9241F1A741B00662229 /* NSObject+YYObject.m */,
+			);
+			path = YYObject;
+			sourceTree = "<group>";
+		};
 		D70C35941E580EDB00F836C0 = {
 			isa = PBXGroup;
 			children = (
@@ -549,9 +585,12 @@
 		D70C35D91E5810AE00F836C0 /* tools */ = {
 			isa = PBXGroup;
 			children = (
-				D70C36C11E58180900F836C0 /* YYData */,
+				A0E0A9221F1A73F800662229 /* YYObject */,
 				D70C36C31E58180900F836C0 /* YYString */,
+				D70C36C11E58180900F836C0 /* YYData */,
+				A0E0A9211F1A73F800662229 /* YYMutableAttributedString */,
 				D70C36C41E58180900F836C0 /* YYView */,
+				A0E0A9201F1A73F800662229 /* YYButton */,
 				D70C36C21E58180900F836C0 /* YYImage */,
 			);
 			path = tools;
@@ -1044,12 +1083,14 @@
 				D70C36441E58148500F836C0 /* SVIndefiniteAnimatedView.m in Sources */,
 				D70C36F41E58237900F836C0 /* YYTableViewCell.m in Sources */,
 				D70C362D1E58136200F836C0 /* MJRefreshNormalHeader.m in Sources */,
+				A0E0A92B1F1A750800662229 /* UIButton+YYButton.m in Sources */,
 				A0110C471EFD19F000330C02 /* MASViewConstraint.m in Sources */,
 				D70C36271E58136200F836C0 /* MJRefreshAutoNormalFooter.m in Sources */,
 				D70C36221E58136200F836C0 /* MJRefreshBackFooter.m in Sources */,
 				D70C36BC1E5816EA00F836C0 /* RNDecryptor.m in Sources */,
 				D70C36451E58148500F836C0 /* SVProgressAnimatedView.m in Sources */,
 				A0110C4A1EFD19F000330C02 /* View+MASAdditions.m in Sources */,
+				A0E0A9281F1A746C00662229 /* NSMutableAttributedString+YYMutableAttributedString.m in Sources */,
 				D70C36611E5815C000F836C0 /* MJExtensionConst.m in Sources */,
 				D70C36281E58136200F836C0 /* MJRefreshAutoStateFooter.m in Sources */,
 				D70C36BD1E5816EA00F836C0 /* RNEncryptor.m in Sources */,
@@ -1095,6 +1136,7 @@
 				A0110C431EFD19F000330C02 /* MASConstraint.m in Sources */,
 				A0110C491EFD19F000330C02 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				D70C36A91E58165C00F836C0 /* UIView+WebCacheOperation.m in Sources */,
+				A0E0A9251F1A741B00662229 /* NSObject+YYObject.m in Sources */,
 				D70C36241E58136200F836C0 /* MJRefreshFooter.m in Sources */,
 				D70C362B1E58136200F836C0 /* MJRefreshBackStateFooter.m in Sources */,
 				D70C36301E58136200F836C0 /* MJRefreshConst.m in Sources */,
