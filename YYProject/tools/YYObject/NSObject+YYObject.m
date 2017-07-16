@@ -10,18 +10,15 @@
 
 @implementation NSObject (YYObject)
 
-- (CGFloat)multiplesForPhone {
+- (void)logTimeTakenToRunBlock:(void (^)(void))block withPrefix:(NSString *)prefixString {
     
-    if (IS_IPHONE_6) {
-        
-        return Scale_To_iPhone6;
-    } else if (IS_IPHONE_6P) {
-        
-        return Scale_To_iPhone6P;
-    } else {
-        
-        return 1.0f;
-    }
+    double a = CFAbsoluteTimeGetCurrent();
+    block();
+    double b = CFAbsoluteTimeGetCurrent();
+    
+    double m = ((b-a) * 1000.0f); // convert from seconds to milliseconds
+    
+    DLog(@"%@: %.5f ms", prefixString ? prefixString : @"Time taken", m);
 }
 
 @end

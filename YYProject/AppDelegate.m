@@ -26,7 +26,11 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     DLog(@"%@",paths);//DLog
     
-    
+    BOOL flag = NO;
+    if (flag) {
+        
+        [self logAndAnalyticsHanlde];
+    }
     
     /***** App store 应用打分 */
     [iRate sharedInstance].applicationBundleID = [[[NSBundle mainBundle] infoDictionary] objectForKey:(__bridge NSString *)kCFBundleIdentifierKey];
@@ -64,6 +68,60 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)logAndAnalyticsHanlde {
+    
+    [UIViewController aspect_hookSelector:@selector(viewWillAppear:)
+                              withOptions:AspectPositionAfter
+                               usingBlock:^(id<AspectInfo> aspectInfo) {
+                                   
+                                   NSString *className = NSStringFromClass([[aspectInfo instance] class]);
+                                   DLog(@"进入 %@ 控制器",className);
+                                   
+                               } error:NULL];
+    
+    [UIViewController aspect_hookSelector:@selector(viewWillDisappear:)
+                              withOptions:AspectPositionAfter
+                               usingBlock:^(id<AspectInfo> aspectInfo) {
+                                   
+                                   NSString *className = NSStringFromClass([[aspectInfo instance] class]);
+                                   DLog(@"离开 %@ 控制器",className);
+                                   
+                               } error:NULL];
+    
+    [UIViewController aspect_hookSelector:NSSelectorFromString(@"dealloc")
+                              withOptions:AspectPositionBefore
+                               usingBlock:^(id<AspectInfo> aspectInfo) {
+                                   
+                                   NSString *className = NSStringFromClass([[aspectInfo instance] class]);
+                                   DLog(@"%@ 控制器被释放了",className);
+                                   
+                               } error:NULL];
+    
+    [UIButton aspect_hookSelector:@selector(addTarget:action:forControlEvents:)
+                      withOptions:AspectPositionAfter
+                       usingBlock:^(id<AspectInfo> aspectInfo, id target, SEL action, UIControlEvents controlEvents) {
+                           
+                           if ([aspectInfo.instance isKindOfClass:[UIButton class]]) {
+                               
+                               UIButton *button = aspectInfo.instance;
+                               button.accessibilityHint = NSStringFromSelector(action);
+                           }
+                       } error:NULL];
+    
+    [UIControl aspect_hookSelector:@selector(beginTrackingWithTouch:withEvent:)
+                       withOptions:AspectPositionAfter
+                        usingBlock:^(id<AspectInfo> aspectInfo, UITouch *touch, UIEvent *event) {
+                            
+                            if ([aspectInfo.instance isKindOfClass:[UIButton class]]) {
+                                
+                                UIButton *button = aspectInfo.instance;
+                                id object =  [button.allTargets anyObject];
+                                NSString *className = NSStringFromClass([object class]);
+                                DLog(@"当前控制器：%@ 按钮方法：%@",className,button.accessibilityHint);
+                            }
+                        } error:NULL];
 }
 
 

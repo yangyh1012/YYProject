@@ -78,4 +78,11 @@ extern NSString *const YYNotificationKey;
 
 - (UIColor *)YYProjectButtonColor;
 
+/**
+ 计算边框
+ 
+ @return 长度
+ */
+- (CGFloat)multiplesForPhone;
+
 @end

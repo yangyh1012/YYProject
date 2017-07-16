@@ -10,11 +10,6 @@
 
 @interface NSObject (YYObject)
 
-/**
- 计算边框
- 
- @return 长度
- */
-- (CGFloat)multiplesForPhone;
+- (void)logTimeTakenToRunBlock:(void (^)(void))block withPrefix:(NSString *)prefixString;
 
 @end

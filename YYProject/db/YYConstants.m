@@ -78,4 +78,18 @@ static YYConstants *sharedManager = nil;
     return RGB_Color(0, 122, 255);
 }
 
+- (CGFloat)multiplesForPhone {
+    
+    if (IS_IPHONE_6) {
+        
+        return Scale_To_iPhone6;
+    } else if (IS_IPHONE_6P) {
+        
+        return Scale_To_iPhone6P;
+    } else {
+        
+        return 1.0f;
+    }
+}
+
 @end
