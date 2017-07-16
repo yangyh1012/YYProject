@@ -127,8 +127,8 @@
     collectionViewFlowLayout.itemSize = CGSizeMake((self.view.frame.size.width - 65.0f) / 3.0f, 85.0f);
     collectionViewFlowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     collectionViewFlowLayout.minimumLineSpacing = 10;
-    collectionViewFlowLayout.minimumInteritemSpacing = 10 * [self multiplesForPhone];
-    collectionViewFlowLayout.sectionInset = UIEdgeInsetsMake(0, 10 * [self multiplesForPhone], 0, 10 * [self multiplesForPhone]);
+    collectionViewFlowLayout.minimumInteritemSpacing = 10 * [[YYConstants sharedManager] multiplesForPhone];
+    collectionViewFlowLayout.sectionInset = UIEdgeInsetsMake(0, 10 * [[YYConstants sharedManager] multiplesForPhone], 0, 10 * [[YYConstants sharedManager] multiplesForPhone]);
     
     //    self.collectionView.delegate = self;
     //    self.collectionView.dataSource = self;
@@ -334,6 +334,14 @@
 
 @implementation AnotherViewController
 
+#pragma mark - Life cycle
+#pragma mark - View Init
+#pragma mark - Button
+#pragma mark - Action
+#pragma mark - Request
+#pragma mark - Notification
+#pragma mark - Delegate
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -359,8 +367,8 @@
     collectionViewFlowLayout.itemSize = CGSizeMake((self.view.frame.size.width - 65.0f) / 3.0f, 85.0f);
     collectionViewFlowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     collectionViewFlowLayout.minimumLineSpacing = 10;
-    collectionViewFlowLayout.minimumInteritemSpacing = 10 * [self multiplesForPhone];
-    collectionViewFlowLayout.sectionInset = UIEdgeInsetsMake(0, 10 * [self multiplesForPhone], 0, 10 * [self multiplesForPhone]);
+    collectionViewFlowLayout.minimumInteritemSpacing = 10 * [[YYConstants sharedManager] multiplesForPhone];
+    collectionViewFlowLayout.sectionInset = UIEdgeInsetsMake(0, 10 * [[YYConstants sharedManager] multiplesForPhone], 0, 10 * [[YYConstants sharedManager] multiplesForPhone]);
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
