@@ -53,6 +53,9 @@
 //AOP编程
 #import "Aspects.h"
 
+//View-Model
+#import <ReactiveObjC/ReactiveObjC.h>
+
 //*************************************** tools ***************************************//
 
 //字符串相关操作

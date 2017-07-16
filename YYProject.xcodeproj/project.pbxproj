@@ -19,6 +19,9 @@
 		A0110C4B1EFD19F000330C02 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A0110C411EFD19F000330C02 /* ViewController+MASAdditions.m */; };
 		A01B3AB71F1B177900CC3628 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = A01B3AB61F1B177900CC3628 /* Aspects.m */; };
 		A039C8441E5BF0D1002C42A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A039C8431E5BF0D1002C42A1 /* InfoPlist.strings */; };
+		A0504EF71F1BD47F006CB8E1 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0504EF61F1BD47F006CB8E1 /* ReactiveObjC.framework */; };
+		A0504EF81F1BD556006CB8E1 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0504EF61F1BD47F006CB8E1 /* ReactiveObjC.framework */; };
+		A0504EF91F1BD556006CB8E1 /* ReactiveObjC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A0504EF61F1BD47F006CB8E1 /* ReactiveObjC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A0E0A9251F1A741B00662229 /* NSObject+YYObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E0A9241F1A741B00662229 /* NSObject+YYObject.m */; };
 		A0E0A9281F1A746C00662229 /* NSMutableAttributedString+YYMutableAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E0A9271F1A746C00662229 /* NSMutableAttributedString+YYMutableAttributedString.m */; };
 		A0E0A92B1F1A750800662229 /* UIButton+YYButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E0A92A1F1A750800662229 /* UIButton+YYButton.m */; };
@@ -136,6 +139,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A0504EFA1F1BD556006CB8E1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A0504EF91F1BD556006CB8E1 /* ReactiveObjC.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		A0110C291EFD19F000330C02 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		A0110C2A1EFD19F000330C02 /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
@@ -165,6 +182,7 @@
 		A01B3AB51F1B177900CC3628 /* Aspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aspects.h; sourceTree = "<group>"; };
 		A01B3AB61F1B177900CC3628 /* Aspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Aspects.m; sourceTree = "<group>"; };
 		A039C8431E5BF0D1002C42A1 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		A0504EF61F1BD47F006CB8E1 /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveObjC.framework; sourceTree = "<group>"; };
 		A0E0A9231F1A741B00662229 /* NSObject+YYObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+YYObject.h"; sourceTree = "<group>"; };
 		A0E0A9241F1A741B00662229 /* NSObject+YYObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YYObject.m"; sourceTree = "<group>"; };
 		A0E0A9261F1A746C00662229 /* NSMutableAttributedString+YYMutableAttributedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+YYMutableAttributedString.h"; sourceTree = "<group>"; };
@@ -370,6 +388,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0504EF71F1BD47F006CB8E1 /* ReactiveObjC.framework in Frameworks */,
+				A0504EF81F1BD556006CB8E1 /* ReactiveObjC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +449,14 @@
 				A01B3AB61F1B177900CC3628 /* Aspects.m */,
 			);
 			path = Aspects;
+			sourceTree = "<group>";
+		};
+		A0504EF51F1BD466006CB8E1 /* ReactiveObjC */ = {
+			isa = PBXGroup;
+			children = (
+				A0504EF61F1BD47F006CB8E1 /* ReactiveObjC.framework */,
+			);
+			name = ReactiveObjC;
 			sourceTree = "<group>";
 		};
 		A0E0A9201F1A73F800662229 /* YYButton */ = {
@@ -579,6 +607,7 @@
 		D70C35D81E5810AE00F836C0 /* third */ = {
 			isa = PBXGroup;
 			children = (
+				A0504EF51F1BD466006CB8E1 /* ReactiveObjC */,
 				A01B3AB41F1B177900CC3628 /* Aspects */,
 				A0110C281EFD19F000330C02 /* Masonry */,
 				D70C36F81E58280D00F836C0 /* Reachability */,
@@ -928,6 +957,7 @@
 				D70C35991E580EDB00F836C0 /* Sources */,
 				D70C359A1E580EDB00F836C0 /* Frameworks */,
 				D70C359B1E580EDB00F836C0 /* Resources */,
+				A0504EFA1F1BD556006CB8E1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1304,7 +1334,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/YYProject/third",
+				);
 				GCC_PREFIX_HEADER = YYProject/PrefixHeader.pch;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = YYProject/Info.plist;
@@ -1326,7 +1359,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/YYProject/third",
+				);
 				GCC_PREFIX_HEADER = YYProject/PrefixHeader.pch;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = YYProject/Info.plist;
