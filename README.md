@@ -35,6 +35,7 @@
 * Reachability：实时监测当前的网络状态
 * Masonry：代码层面的界面布局
 * Aspects：切面编程
+* ReactiveObjC：View-Model
 
 ### model：
 * MJExtensionConfig：使用过MJExtension文件的都知道，这个文件是用于转换属性名称。
