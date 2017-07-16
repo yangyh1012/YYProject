@@ -18,6 +18,11 @@
 * Masonry：代码层面的界面布局
 
 # 怎么使用 
+
+### base：
+* YYBaseViewController：顶层基类，使用时，每个类继承于这个基础类。
+* ViewController：每次创建新的视图控制器时，可以直接拷贝该文件中的代码到新的视图控制器中。
+
 ### db：
 * YYConstants：包含了一些工程的全局静态常量。
 * YYDataHandle：数据处理类。
@@ -28,20 +33,14 @@
 * YYCommunication：网络与控制器的沟通类，你可以使用定义好的方法进行请求，请求包含get和post，还有图片上传，或者你也可以取消请求。YYCommunicationDelegate包含了网络请求返回数据的回调。
 
 ### tools：
-* NSData+YYData：base64数据处理。
-* NSString+YYString：可以检测字符串是否为空、可以生成当前时间的字符串以及错误码的详细说明。
-* UIImage+YYImage：这个工具类别中，你可以重构图片尺寸，可以单纯地修改图片颜色。
-* UIView+YYView：处理视图边框。
+* 各种Category。
+
+### tools：
+* 各种著名的第三方代码。
 
 ### model：
 * MJExtensionConfig：使用过MJExtension文件的都知道，这个文件是用于转换属性名称。
 * YYTestData：测试的一个model，里面加入了NSCoding。
-
-### YYBaseViewController：
-* 使用时，每个类继承于这个基础类。
-
-### ViewController：
-* 每次创建新的视图控制器时，可以直接拷贝该文件中的代码到新的视图控制器中。
 
 # 想要修改工程名？
 * 双击YYProject.xcodeproj，进入工程中。可以看到最顶层的工程project名字是YYProject，点击YYProject为可编辑状态，改为你想要的名字，比如DDTest。刚改完会弹出“Rename project content items？”点击rename。再点击OK。这时可以看到最顶层的工程project名字换成了DDTest。
