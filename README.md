@@ -4,19 +4,6 @@
 # 谁使用它
 任何iOS开发人员（工程语言是Objective-C）都可以使用它。
 
-# YYProject包含了哪些第三方类库
-* AFNetworking：网络请求专用库
-* MJRefresh：上下拉刷新
-* MBProgressHUD：界面信息提示
-* SVProgressHUD：界面信息加载
-* MJExtension：模式和字典相互转换
-* SDWebImage：图片加载
-* FLAnimatedImageView：gif图片加载
-* RNCryptor：文件加密
-* iRate：应用评分
-* Reachability：实时监测当前的网络状态
-* Masonry：代码层面的界面布局
-
 # 怎么使用 
 
 ### base：
@@ -35,8 +22,18 @@
 ### tools：
 * 各种Category。
 
-### tools：
-* 各种著名的第三方代码。
+### third：
+* AFNetworking：网络请求专用库
+* MJRefresh：上下拉刷新
+* MBProgressHUD：界面信息提示
+* SVProgressHUD：界面信息加载
+* MJExtension：模式和字典相互转换
+* SDWebImage：图片加载
+* FLAnimatedImageView：gif图片加载
+* RNCryptor：文件加密
+* iRate：应用评分
+* Reachability：实时监测当前的网络状态
+* Masonry：代码层面的界面布局
 
 ### model：
 * MJExtensionConfig：使用过MJExtension文件的都知道，这个文件是用于转换属性名称。
