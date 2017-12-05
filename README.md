@@ -1,3 +1,11 @@
+# 此工程废弃，请查看最新的工程
+https://github.com/yangyh1012/YYProjectNew
+
+
+
+
+***
+
 # YYProject 基础工程
 简介：这是一个基础工程，你可以直接下载使用。
 
